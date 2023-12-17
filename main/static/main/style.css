@@ -1,0 +1,8 @@
+
+ul li a{
+  @apply rounded py-[7px] px-[13px] text-[17px] hover:bg-slate-100 transition-all duration-300
+}
+
+#check:checked ~ ul {
+  left: 0;
+}

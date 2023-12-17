@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/f9b106e57d.js" crossorigin="anonymous"></script>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/style.css' %}" />
+
+    <title>WriteO - {% block title %} {% endblock title %}</title>
+
+  </head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+  </style>
+  <body class="font-[Montserrat] bg-white text-black">
+    
+    <nav class="bg-slate-300 h-20 w-full fixed">
+      <input type="checkbox" id="check" hidden>
+      <label for="check" class="float-right text-white text-3xl leading-[80px] mr-10 lg:hidden ">
+        <i class="fas fa-bars"></i>
+      </label>
+      
+      <label for="" class="text-white leading-[80px] pl-12 md:pl-24 md:text-4xl text-2xl md:leading-[80px]"><a href="{% url 'main:main-home' %}">WriteO</a></label>
+
+      <ul class="float-right mr-10 lg:flex leading-[80px]  space-x-4 text-white uppercase rounded fixed lg:relative h-[100vh] lg:h-0 w-[100%] lg:w-fit top-20 lg:top-0 left-[-100%] lg:left-0 transition-all duration-300 lg:transition-none text-center bg-slate-700">
+        <li class=""><a href="{% url 'main:main-home' %}">Home</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'main:post-create' %}">New Post</a></li>
+        <li><a href="{% url 'users:users-profile' %}">Profile</a></li>
+        <li><a href="{% url 'users:users-logout' %}">Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'users:users-register' %}">Register</a></li>
+        <li><a href="{% url 'users:users-login' %}">Login</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    
+    <div class="col-md-8 p-5">
+      {% if messages %} {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} items-center">{{ message }}</div>
+      {% endfor %} {% endif %}
+    </div>
+    <div class="p-10 w-full h-120">{% block body %} {% endblock body %}</div>
+ 
+
+  </body>
+</html>

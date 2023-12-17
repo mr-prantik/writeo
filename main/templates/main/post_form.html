@@ -1,0 +1,22 @@
+{% extends 'main/layout.html' %}
+{% load crispy_forms_tags %} 
+{% block title %}
+    Register 
+{% endblock title %} 
+{% block body %}
+<h1>Create a Post</h1>
+<div class="container border border-black">
+  <div class="form-wrap">
+    <form action="{% url 'main:post-create' %}" method="post">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Write your blog here</legend>
+        {{ form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Post</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock body %}

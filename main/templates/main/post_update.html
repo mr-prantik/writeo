@@ -1,0 +1,23 @@
+{% extends 'main/layout.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Register
+{% endblock title %}
+{% block body %}
+<div class="container">
+    
+    <div class="form-wrap">
+            <h1>Update Post</h1>
+            <form action="{% url 'main:post-update' object.id %}" method="post">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb4">Post your Blog</legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button type="submit">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock body %}
